@@ -1,7 +1,9 @@
 <?php
     include_once "models/pdo.php";
     include_once "models/theloai.php";
+    include_once "models/truyen.php";
     $all_tl=loadall_theloai();
+    $truyen_home=load_truyen_home();
     include_once "views/header.php";
     if(isset($_GET['act'])){
         $act=$_GET['act'];

@@ -108,7 +108,7 @@
                       onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                     </button>
 </a>
-                    <a href="index.php?act=sua_tl_get&id='.$id.'">
+                    <a href="index.php?act=sua_tl&id='.$id.'">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
                              data-target="#ModalUP"><i class="fas fa-edit"></i>
 <!--                        thêm thuộc tính (data-toggle="modal") để hiển thị form bên dưới-->

@@ -1,7 +1,5 @@
 <?php
-    if(isset($_GET['id'])){
-        $id=$_GET['id'];
-    }
+
 ?>
 <div class="container"  style="margin-top: 50px">
     <form method="post" action="index.php?act=sua_tl">

@@ -14,11 +14,10 @@ if(isset($_GET['act'])){
             }
             include_once "theloai/them_tl.php";
             break;
-        case "sua_tl_get":
-            include_once "theloai/sua_tl.php";
-            break;
         case "sua_tl":
-            $ten_tl_old=load_ten_tl($id);
+            if(isset($_GET['id'])){
+                $ten_tl_old=load_ten_tl($_GET['id']);
+            }
             if(isset($_POST['submit'])){
                 $ten_tl=$_POST['ten_tl'];
                 sua_tl($id,$ten_tl);
