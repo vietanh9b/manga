@@ -14,6 +14,9 @@
             case "gioithieu":
                 include_once "views/blog-details.php";
                 break;
+            case "manga_chapter":
+                include_once "views/manga_chapter.php";
+                break;
         }
     }else{
         include_once "views/home.php";

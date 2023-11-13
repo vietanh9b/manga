@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="../index.php"><i class="fa fa-home"></i> Home</a>
-                        <a href="../categories.html">Categories</a>
+                        <a href="../catanime__details__btnegories.html">Categories</a>
                         <span>Romance</span>
                     </div>
                 </div>
@@ -71,13 +71,22 @@
                             </div>
                             <div class="anime__details__btn">
                                 <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
-                                    class="fa fa-angle-right"></i></a>
+                                <a href="index.php?act=manga_chapter" class="watch-btn"><span>Đọc từ đầu</span></a>
+                                <a href="index.php?act=manga_chapter" class="watch-btn"><span>Đọc mới nhất</span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            <div class="anime__details__episodes">
+                <div class="section-title">
+                    <h5>List Name</h5>
+                </div>
+                <a href="#">Chapter 01</a>
+                <a href="#">Chapter 02</a>
+                <a href="#">Chapter 03</a>
+
+            </div>
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">

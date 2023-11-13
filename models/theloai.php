@@ -9,7 +9,7 @@ function load_ten_tl($idtl){
         $sql="select * from theloai where id=".$idtl;
         $tl=pdo_query_one($sql);
         extract($tl);
-        return $ten_tl;
+        return $tl;
     }else{
         return "";
     }

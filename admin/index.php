@@ -17,10 +17,10 @@ if(isset($_GET['act'])){
         case "sua_tl":
             if(isset($_GET['id'])){
                 $ten_tl_old=load_ten_tl($_GET['id']);
-            }
-            if(isset($_POST['submit'])){
-                $ten_tl=$_POST['ten_tl'];
-                sua_tl($id,$ten_tl);
+                if(isset($_POST['submit'])){
+                    $ten_tl=$_POST['ten_tl'];
+                    sua_tl($ten_tl_old['id'],$ten_tl);
+                }
             }
             include_once "theloai/sua_tl.php";
             break;
