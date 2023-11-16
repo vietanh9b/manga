@@ -28,9 +28,9 @@
 <body>
 
 <!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+<!--<div id="preloder">-->
+<!--    <div class="loader"></div>-->
+<!--</div>-->
 
 <!-- Header Section Begin -->
 <header class="header">
@@ -61,7 +61,7 @@
                                 </ul>
                             </li>
                             <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
-                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="index.php?act=blog">Blog</a></li>
                             <li><a href="#">Liên hệ</a></li>
                         </ul>
                     </nav>

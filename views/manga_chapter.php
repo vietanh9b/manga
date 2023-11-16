@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-    </div>anime__details__episodes
+    </div>
 </div>
 <!-- Breadcrumb End -->
 
@@ -20,13 +20,21 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="anime__video__player">
-                    <video id="player" playsinline controls data-poster="./videos/anime-watch.jpg">
-                        <source src="videos/1.mp4" type="video/mp4" />
-                        <!-- Captions are optional -->
-                        <track kind="captions" label="English captions" src="#" srclang="en" default />
-                    </video>
+                <div class="anime__details__episodes">
+                    <div class="section-title">
+                        <h5>List Name</h5>
+                    </div>
                 </div>
+                <?php
+                foreach ($image as $img_truyen){
+                    echo '
+                    <div class="page-chapter text-center">
+                        <img src="assets/img/img_manga/'.$img_truyen['image'].'" alt="">
+                    </div>
+                    ';
+                }
+                ?>
+
                 <div class="anime__details__episodes">
                     <div class="section-title">
                         <h5>List Name</h5>

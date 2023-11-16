@@ -67,7 +67,7 @@
                             extract($truyen);
                             echo '
                             <div class="col-lg-4 col-md-6 col-sm-6">
-                            <a href="index.php?act=manga_detail">
+                            <a href="index.php?act=manga_detail&id='.$id.'">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="assets/img/trending/'.$img.'">
                                         <div class="ep">18 / 18</div>
