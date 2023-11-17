@@ -5,8 +5,9 @@ include_once "../models/truyen.php";
 include_once "../models/chapter.php";
 include_once "../models/image_truyen.php";
 include_once "../models/trangthai.php";
+include_once "../models/taikhoan.php";
 include_once "views/header.php";
-// include_once "views/sidebar.php";
+include_once "views/sidebar.php";
 $all_tl=loadall_theloai();
 $all_truyen=load_tat_ca_truyen1();
 if(isset($_GET['act'])){
@@ -147,6 +148,44 @@ if(isset($_GET['act'])){
                 // echo "kkk";
                 // include_once "truyen/list_truyen.php";
                 break;
+
+                case "dangnhap":
+                    if(isset($_POST['submit'])){
+                        $username=$_POST['username'];
+                        $pass=$_POST['pass'];
+                        $query=find_taikhoan_admin($username,$pass);
+                        echo "<pre>";
+                        print_r($query);
+                        echo "</pre>";
+                        if($query){
+                            extract($query);
+                                $_SESSION['admin']=$username;
+                                include "views/home.php";
+                                if(isset($_SESSION['err'])){
+                                    unset($_SESSION['err']);
+                                }
+                            }
+                        else{
+                            $err="Đăng nhập thất bại";
+                            $_SESSION['err']=$err;
+        //                    header("Location: dangnhap.php");
+                            include_once "users/dangnhap.php";
+                        }
+                    }
+                    include_once "users/dangnhap.php";
+                    break;
+        
+                case "taikhoan_kh":
+                    $load_all_tk=load_all_tk();
+                    include "users/users.php";
+                    break;
+                case "xoatk":
+                    $load_all_tk=load_all_tk();
+                    if(isset($_GET['id'])){
+                        delete_tk($_GET['id']);
+                    }
+                    include "users/users.php";
+                    break;
     }
 }else{
     include_once "views/home.php";

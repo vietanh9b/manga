@@ -1,10 +1,12 @@
 <?php
+session_start();
     include_once "models/pdo.php";
     include_once "models/theloai.php";
     include_once "models/truyen.php";
     include_once "models/chapter.php";
     include_once "models/trangthai.php";
     include_once "models/image_truyen.php";
+    include_once "models/taikhoan.php";
 
     $all_tl=loadall_theloai();
     $truyen_home=load_truyen_home();
@@ -45,9 +47,88 @@
             case "blog":
                 include_once "views/blog.php";
                 break;
+                case 'register':
+                    if (isset($_POST['dang_ky'])) {
+                        $name = trim($_POST['name']);
+                        $email = trim($_POST['email']);
+                        $password = trim($_POST['pass']);
+                        $flag_register = true;
+                        if ($name == "") {
+                            $flag_register = false;
+                            $err_name = "Name không được để trống";
+                        }
+                        if ($email == "") {
+                            $flag_register = false;
+                            $err_email = "Email không được để trống";
+                        }
+                        if ($password == "") {
+                            $flag_register = false;
+                            $err_pass = "Mật khẩu không được để trống";
+                        }
+                        if ($flag_register) {
+                            $query=insert_taikhoan($name, $email,  $password);
+                            $thongbao = "Đăng ký tài khoản thành công";
+                        } else {
+                            $thongbao = "Đăng ký tài khoản thất bại";
+                        }
+                    }
+                    include "views/register.php";
+                    break;
+                    //đăng nhập
+                case 'login':
+                    if(isset($_POST['login'])){
+                        echo "login";
+                        $username=$_POST['username'];
+                        $pass=$_POST['pass'];
+                        $query=find_taikhoan($username,$pass);
+                            if($query &&$query['role']==0){
+                                $_SESSION['username']=$query['user_name'];
+                                $_SESSION['iduser']=$query['id'];
+                                include "views/home.php";
+                            }else{
+                                $err="Đăng nhập thất bại";
+                                include "views/login.php";
+                            }
+                    }else{
+                        include "views/login.php";
+                    }
+                    break;
+                case "dangxuat":
+                    session_destroy();
+                    include "views/home.php";
+                    break;
+                case "doipass":
+                    if(isset($_POST['submit'])){
+                        $pass=$_POST['pass'];
+                        $new_pass=$_POST['new_pass'];
+                        $renew_pass=$_POST['renew_pass'];
+                        $find_mk=find_matkhau($pass);
+                        if($find_mk){
+                            if($new_pass==$renew_pass){
+                                $result="Đổi mật khẩu thành công";
+                                doi_matkhau($new_pass);
+                            }else{
+                                $err="Nhập lại mật khẩu chưa đúng";
+                            }
+                        }elseif(empty($pass)){
+                            $err="Chưa nhập mật khẩu";
+                        }
+                        else{
+                            $err="Nhập chưa đúng mật khẩu";
+                        }
+                    }
+                    include "views/change-pass.php";
+                    break;
+                case "quenmk":
+                    if(isset($_POST['submit'])){
+                        $email = $_POST['email'];
+                        $sendMailMess = sendMail($email);
+                    }
+                    include "views/quenmk.php";
+                    break;
         }
     }else{
-        include_once "views/home.php";
+        include "views/home.php";
     }
     include_once "views/footer.php";
 ?>

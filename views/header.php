@@ -71,10 +71,18 @@
                 <div class="header__right header__menu" style="display: flex;">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
                     <ul>
-                        <li><a style="padding: 0;" href="./login.html"><span class="icon_profile"></span></a>
+                        <li><span class="icon_profile"></span>
                             <ul class="dropdown">
-                                <li><a href="./signup.html">Đăng ký</a></li>
-                                <li><a href="./login.html">Đăng nhập</a></li>
+                            <?php
+                                if (UserLogIn()) {
+                                    echo '<li><a>Xin chào, ' . getLogInUserName() . '!</a></li>
+                                    <li><a href="index.php?act=dangxuat">Đăng xuất</a></li>
+                                    <li><a href="index.php?act=change_password">Đổi mật khẩu</a></li>';
+                                } else {
+                                    echo '<li><a href="index.php?act=login">Đăng nhập</a></li>
+                                    <li><a href="index.php?act=register">Đăng ký</a></li>';
+                                }
+                                ?>
                             </ul>
                         </li>
                     </ul>
