@@ -6,6 +6,12 @@ function load_tat_ca_chuong($id_truyen){
     return $listtruyen;
 }
 
+function chapter($id_chapter){
+    $sql="SELECT * FROM chuong_truyen WHERE id = $id_chapter;";
+    $id=pdo_query($sql);
+    return $id;
+}
+
 function old_chapter($id_truyen){
     $sql="SELECT * FROM chuong_truyen WHERE id_truyen = $id_truyen ORDER BY `chuong_so` ASC LIMIT 1;";
     $id=pdo_query($sql);

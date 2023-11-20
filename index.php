@@ -7,6 +7,7 @@ session_start();
     include_once "models/trangthai.php";
     include_once "models/image_truyen.php";
     include_once "models/taikhoan.php";
+    include_once "models/yeuthich.php";
 
     $all_tl=loadall_theloai();
     $truyen_home=load_truyen_home();
@@ -126,6 +127,43 @@ session_start();
                     }
                     include "views/quenmk.php";
                     break;
+
+            case "list_yeuthich":
+                if(isset($_SESSION['iduser'])){
+                    echo $_SESSION['iduser'];
+                    $loadall_yeuthich=loadall_yeuthich($_SESSION['iduser']);
+//                    echo "<pre>";
+//                    print_r($loadall_yeuthich);
+//                    echo "</pre>";
+                    include_once "views/list_yeuthich.php";
+                }
+                break;
+            case "them_yeuthich":
+//                echo $_SESSION['iduser'];
+                if(isset($_GET['id_truyen'])&&isset($_SESSION['iduser'])){
+                    insert_yeuthich($_SESSION['iduser'],$_GET['id_truyen']);
+                }else{
+                    $err="Bạn phải đăng nhập mới tim được";
+                    echo
+                    "<script>
+                    alert('$err');
+</script>";
+                }
+                include "views/home.php";
+                break;
+            case "xoa_yeuthich":
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    xoa_yeuthich($id);
+                }
+                break;
+            case "list_theloai":
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    $list_theloai=list_theloai($id);
+                    include_once "views/list_theloai.php";
+                }
+                break;
         }
     }else{
         include "views/home.php";

@@ -15,7 +15,7 @@
                             <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><b><i class="fas fa-folder-plus"></i> Tạo tình trạng mới</b></a>
                         </div>
                     </div>
-                    <form class="row" method="post" enctype="multipart/form-data" action="">
+                    <form class="row" method="post" enctype="multipart/form-data" action="index.php?act=chapter_image&id=<?= $_GET['id']?>">
                         <div class="form-group col-md-12">
                             <label class="control-label">Chọn tệp</label>
                             <input class="form-control" type="file" name="image">
@@ -25,6 +25,7 @@
                         foreach($load_all_img_truyen as $img_truyen){
                             ?>
                             <div class="container_img col-md-2">
+                                <a href="index.php?act=delete_image&id=<?= $img_truyen['id']?>&id_chuong=<?= $img_truyen['id_chuong']?>;"><i class="fa-solid fa-xmark"></i></a>
                                 <p >Ảnh <?= $img_truyen['img_so'];?></p>
                                 <img src="../assets/img/img_manga/<?= $img_truyen['image'];?>" alt="img truyện"
                                      style="
@@ -38,11 +39,11 @@
                         <?php
                         }
                         ?>
-
+                        <button class="btn btn-save" type="submit" name="submit" style="background: antiquewhite;">Lưu lại</button>
+                        <a class="btn btn-cancel" href="/doc/table-data-banned.html" style="background: antiquewhite;">Hủy bỏ</a>
                         </form>
                 </div>
-                <button class="btn btn-save" type="submit" name="submit" style="background: antiquewhite;">Lưu lại</button>
-                <a class="btn btn-cancel" href="/doc/table-data-banned.html" style="background: antiquewhite;">Hủy bỏ</a>
+
             </div>
             </div>
     </div>

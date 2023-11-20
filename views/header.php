@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 </head>
 
 <body>
@@ -54,7 +55,7 @@
                                     foreach ($all_tl as $theloai){
                                         extract($theloai);
                                         echo '
-                                        <li><a href="./categories.html">'.$ten_tl.'</a></li>
+                                        <li><a href="index.php?act=list_theloai&id='.$id.'">'.$ten_tl.'</a></li>
                                         ';
                                     }
                                     ?>
@@ -62,7 +63,7 @@
                             </li>
                             <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
                             <li><a href="index.php?act=blog">Blog</a></li>
-                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="index.php?act=list_yeuthich">Yêu thích</a></li>
                         </ul>
                     </nav>
                 </div>

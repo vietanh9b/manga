@@ -1,4 +1,10 @@
 <?php
+function list_theloai($id){
+
+    $sql="SELECT * from truyen join theloai on truyen.ma_tl =theloai.id WHERE theloai.id=".$id.";";
+    $listtheloai=pdo_query($sql);
+    return  $listtheloai;
+}
 function loadall_theloai(){
     $sql="select * from theloai order by id desc";
     $listtheloai=pdo_query($sql);
@@ -14,8 +20,8 @@ function load_ten_tl($idtl){
         return "";
     }
 }
-function insert_tl($matl,$tentl){
-    $query="INSERT INTO `theloai` (`id`, `ten_tl`) VALUES ('".$matl."' , '".$tentl."');";
+function insert_tl($tentl){
+    $query="INSERT INTO `theloai` (`id`, `ten_tl`) VALUES (null , '".$tentl."');";
     pdo_execute($query);
 }
 

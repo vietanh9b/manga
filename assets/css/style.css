@@ -657,6 +657,23 @@ ol {
 	border-radius: 5px;
 }
 
+.product__item__pic .heart{
+	font-size: 13px;
+	display: inline-block;
+	position: relative;
+	text-align: right;
+	right: 10px;
+	top: 10px;
+}
+
+.product__item__pic .heart a{
+	font-size: 13px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+
 .product__item__pic .ep {
 	font-size: 13px;
 	color: #ffffff;

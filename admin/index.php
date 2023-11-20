@@ -18,9 +18,9 @@ if(isset($_GET['act'])){
             break;
         case "them_tl":
             if(isset($_POST['submit'])){
-                $id_tl=$_POST['id_tl'];
+//                $id_tl=$_POST['id_tl'];
                 $ten_tl=$_POST['ten_tl'];
-                insert_tl($id_tl,$ten_tl);
+                insert_tl($ten_tl);
             }
             include_once "theloai/them_tl.php";
             break;
@@ -67,24 +67,36 @@ if(isset($_GET['act'])){
         case "edit_chapter":
             if(isset($_GET['id'])){
                 $id=$_GET['id'];
-                update_chapter($id);
+                load_tat_ca_chuong($id);
             }
             include_once "chapter/sua_chapter.php";
             break;
         case "chapter_image":
             if (isset($_GET['id'])){
-                $load_all_img_truyen=load_all_img_truyen($_GET['id']);
-                $new_image=new_image($_GET['id']);
+                $id_chuong=$_GET['id'];
+                $load_all_img_truyen=load_all_img_truyen($id_chuong);
+                $new_image=new_image($id_chuong);
             }
             if(isset($_POST['submit'])){
-                $image=$_POST['image']['name'];
+                $image=$_FILES['image']['name'];
                 $target_dir = "../assets/img/img_manga/";
                 $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                echo $target_file;
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     echo "Ảnh ". htmlspecialchars( basename( $_FILES["image"]["name"])). " đã được upload.";
                 } else {
                     echo "Upload ảnh thất bại.";
                 }
+                insert_img_chapter($image,$id_chuong,$new_image[0]['img_so']+1);
+            }
+            include_once "chapter/image_chapter.php";
+            break;
+        case "delete_image":
+            if(isset($_GET['id'])){
+                $load_all_img_truyen=load_all_img_truyen($_GET['id_chuong']);
+                $id_image=$_GET['id'];
+                delete_image($id_image);
+                echo $id_image;
             }
             include_once "chapter/image_chapter.php";
             break;
