@@ -65,6 +65,10 @@
                         <?php
                         foreach ($list_theloai as $truyen){
                             extract($truyen);
+                                                echo "<pre>";
+                                                echo $id;
+//                    print_r($truyen['id']);
+                    echo "</pre>";
                             echo '
                             <div class="col-lg-4 col-md-6 col-sm-6">
                             <a href="index.php?act=manga_detail&id='.$id.'">

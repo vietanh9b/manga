@@ -1,9 +1,16 @@
 <?php
 
+
 function load_tat_ca_chuong($id_truyen){
     $sql="select * from chuong_truyen where id_truyen=$id_truyen";
     $listtruyen=pdo_query($sql);
     return $listtruyen;
+}
+
+function load_chapter_number($id_truyen){
+    $sql="select * FROM chuong_truyen WHERE chuong_truyen.id_truyen=$id_truyen;";
+    $id=pdo_query($sql);
+    return $id;
 }
 
 function chapter($id_chapter){

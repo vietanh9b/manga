@@ -23,9 +23,10 @@ session_start();
                     $theloai =load_ten_tl($loadone_tryen['ma_tl']);
                     $old_chapter=old_chapter($id);
                     $new_chapter=new_chapter($id);
+                    $load_chapter_number=load_chapter_number($id);
 //                    echo $old_chapter[0]['id'];
 //                    echo "<pre>";
-//                    print_r($old_chapter);
+//                    print_r($load_chapter_number);
 //                    echo "</pre>";
                 }
                 include_once "views/manga-details.php";

@@ -77,10 +77,13 @@
             <div class="section-title">
                 <h5>List Name</h5>
             </div>
-
-            <a href="#">Chapter 01</a>
-            <a href="#">Chapter 02</a>
-            <a href="#">Chapter 03</a>
+            <?php
+            foreach ($load_chapter_number as $load_chapter_number){
+                echo "
+                    <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
+                ";
+            }
+            ?>
 
         </div>
         <div class="row">
