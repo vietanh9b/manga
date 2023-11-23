@@ -8,6 +8,7 @@ session_start();
     include_once "models/image_truyen.php";
     include_once "models/taikhoan.php";
     include_once "models/yeuthich.php";
+    include_once "models/lichsu.php";
 
     $all_tl=loadall_theloai();
     $truyen_home=load_truyen_home();
@@ -35,6 +36,9 @@ session_start();
                 if(isset($_GET['id_chuong'])){
                     $id_chuong=$_GET['id_chuong'];
                     $image=load_all_img_truyen($id_chuong);
+                    if(isset($_SESSION['iduser'])){
+                        insert_lichsu($_SESSION['iduser'],$id_chuong);
+                    }
 //                    echo "<pre>";
 //                    print_r($image);
 //                    echo "</pre>";
@@ -46,8 +50,25 @@ session_start();
                 include_once "views/blog-details.php";
                 break;
 
-            case "blog":
-                include_once "views/blog.php";
+            case "list_lichsu":
+                if(isset($_SESSION['iduser'])){
+                    if(isset($err)){
+                        $err="";
+                    }
+                    echo $_SESSION['iduser'];
+                    $load_lichsu=load_lichsu($_SESSION['iduser']);
+//                    echo "<pre>";
+//                    print_r($load_lichsu);
+//                    echo "</pre>";
+                    include_once "views/list_lichsu.php";
+                }
+                else{
+                    $err="Phải đăng nhập tài khoản mới xem được lịch sử";
+                    echo
+                    "<script>
+                    alert('$err');
+                    </script>";
+                }
                 break;
                 case 'register':
                     if (isset($_POST['dang_ky'])) {

@@ -2,7 +2,7 @@
 
 
 function load_tat_ca_chuong($id_truyen){
-    $sql="select * from chuong_truyen where id_truyen=$id_truyen";
+    $sql="select * from chuong_truyen where id_truyen=$id_truyen;";
     $listtruyen=pdo_query($sql);
     return $listtruyen;
 }
@@ -40,7 +40,7 @@ function add_chapter($id_truyen,$chuong){
 }
 
 function delete_chapter($id_chuong){
-    $sql="DELETE FROM `chuong_truyen` WHERE `chuong_truyen`.`id` = $id_chuong";
+    $sql="DELETE FROM `chuong_truyen` WHERE `chuong_truyen`.`id` = $id_chuong;";
     $id=pdo_execute($sql);
     return $id;
 }

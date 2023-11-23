@@ -62,7 +62,7 @@
                                 </ul>
                             </li>
                             <li><a href="index.php?act=gioithieu">Giới thiệu</a></li>
-                            <li><a href="index.php?act=blog">Blog</a></li>
+                            <li><a href="index.php?act=list_lichsu">Lịch sử</a></li>
                             <li><a href="index.php?act=list_yeuthich">Yêu thích</a></li>
                         </ul>
                     </nav>
