@@ -21,6 +21,7 @@ if(isset($_GET['act'])){
 //                $id_tl=$_POST['id_tl'];
                 $ten_tl=$_POST['ten_tl'];
                 insert_tl($ten_tl);
+                echo '<script>window.location.href = "index.php?act=the_loai";</script>';
             }
             include_once "theloai/them_tl.php";
             break;
@@ -38,9 +39,8 @@ if(isset($_GET['act'])){
             if(isset($_GET['id'])){
                 xoa_tl($_GET['id']);
             }
-            include_once "theloai/theloai.php";
+            echo '<script>window.location.href = "index.php?act=the_loai";</script>';
             break;
-
         case "chapter":
 //            echo "<pre>";
 //            print_r($all_truyen);

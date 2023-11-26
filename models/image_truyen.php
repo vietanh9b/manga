@@ -9,7 +9,6 @@
         $sql="SELECT * FROM image_truyen WHERE id_chuong = $id_chapter ORDER BY `img_so` DESC LIMIT 1;";
         $id=pdo_query($sql);
         return $id;
-
     }
 
     function insert_img_chapter($image,$id_chapter,$img_so){

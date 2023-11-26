@@ -22,7 +22,7 @@
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
     <script>
-
+        exit();
 
         function readURL(input, thumbimage) {
             if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
