@@ -88,6 +88,7 @@ if(isset($_GET['act'])){
                     echo "Upload ảnh thất bại.";
                 }
                 insert_img_chapter($image,$id_chuong,$new_image[0]['img_so']+1);
+                echo '<script>window.location.href = "index.php?act=chapter_image&id='.$id_chuong.'";</script>';
             }
             include_once "chapter/image_chapter.php";
             break;
@@ -96,9 +97,9 @@ if(isset($_GET['act'])){
                 $load_all_img_truyen=load_all_img_truyen($_GET['id_chuong']);
                 $id_image=$_GET['id'];
                 delete_image($id_image);
-                echo $id_image;
+                echo '<script>window.location.href = "index.php?act=chapter_image&id='.$_GET['id_chuong'].'";</script>';
+                exit();
             }
-            include_once "chapter/image_chapter.php";
             break;
             case "them_sp":
                 $loadall_theloai = loadall_theloai();
@@ -122,6 +123,10 @@ if(isset($_GET['act'])){
                     include_once "truyen/list_truyen.php";
                 } else if (isset($_GET['type'])&&$_GET['type'] == 1) {
                     if (isset($_POST['add-btn'])) {
+                        echo $_FILES['img'];
+                        echo "<pre>";
+                        print_r($_FILES['img']);
+                        echo "</pre>";
                         $check = insert_sanpham($_POST['ten_truyen'], $_POST['ten_khac'], $_POST['img'], $_POST['mota'], $_POST['tac_gia'], $_POST['ngay'], $_POST['ma_tl'], $_POST['id_trang_thai']);
                         if ($check) {
                             echo '<script>alert("Thêm thành công")</script>';

@@ -26,13 +26,13 @@
                             ?>
                             <div class="container_img col-md-2">
                                 <a href="index.php?act=delete_image&id=<?= $img_truyen['id']?>&id_chuong=<?= $img_truyen['id_chuong']?>;"><i class="fa-solid fa-xmark"></i></a>
+
                                 <p >Ảnh <?= $img_truyen['img_so'];?></p>
                                 <img src="../assets/img/img_manga/<?= $img_truyen['image'];?>" alt="img truyện"
                                      style="
                                   width: 120px;
                                     margin-bottom: 20px;">
                             </div>
-
 <!--                                echo "<pre>";-->
 <!--                                print_r($truyen);-->
 <!--                                echo "</pre>";-->
