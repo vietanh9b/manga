@@ -1,7 +1,13 @@
 <?php
 function insert_yeuthich($id_user,$id_truyen){
-    $query="INSERT INTO `yeuthich` (`id`, `id_user`, `id_truyen`) VALUES (NULL, '".$id_user."', '".$id_truyen."');";
-    pdo_execute($query);
+    $sql="SELECT * FROM `yeuthich` WHERE `id_user`='$id_user' AND `id_truyen`='$id_truyen';";
+    $check=pdo_query($sql);
+    if($check){
+        return "";
+    }else{
+        $query="INSERT INTO `yeuthich` (`id`, `id_user`, `id_truyen`) VALUES (NULL, '".$id_user."', '".$id_truyen."');";
+        pdo_execute($query);
+    }
 }
 
 function loadall_yeuthich($id_user){

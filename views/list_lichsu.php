@@ -19,8 +19,6 @@
         <div class="row">
             <?php
             foreach ($load_lichsu as $truyen){
-                echo $truyen['id'];
-                extract($truyen);
 //                    echo "<pre>";
 //                    print_r($truyen);
 //                    echo "</pre>";
@@ -28,7 +26,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-6">
       
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="assets/img/trending/'.$img.'">
+                                    <div class="product__item__pic set-bg" data-setbg="assets/img/trending/'.$truyen['img'].'">
                                         <div class="heart" style="
                                         font-size: 13px;
                                         display: inline-block;
@@ -37,7 +35,7 @@
                                         right: 10px;
                                         top: 10px;
                                         ">
-                                        <a href="index.php?act=them_yeuthich&id_truyen='.$id_truyen.'"><i 
+                                        <a href="index.php?act=them_yeuthich&id_truyen='.$truyen['id'].'"><i 
                                         style="font-size: 20px"
                                         class="fa-solid fa-heart"></i></a>
                                         </div>
@@ -50,7 +48,7 @@
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="index.php?act=manga_detail&id='.$id_truyen.'">'.$ten_truyen.'</a></h5>
+                                        <h5><a href="index.php?act=manga_detail&id='.$truyen['id'].'">'.$truyen['ten_truyen'].'</a></h5>
                                     </div>
                                 </div>
                   

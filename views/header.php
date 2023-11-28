@@ -72,7 +72,7 @@
                 <div class="header__right header__menu" style="display: flex;">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
                     <ul>
-                        <li><span class="icon_profile"></span>
+                        <li><span class="icon_profile text-light"></span>
                             <ul class="dropdown">
                             <?php
                                 if (UserLogIn()) {

@@ -35,9 +35,11 @@ session_start();
             case "manga_chapter":
                 if(isset($_GET['id_chuong'])){
                     $id_chuong=$_GET['id_chuong'];
+                    $id_truyen=$_GET['id_truyen'];
                     $image=load_all_img_truyen($id_chuong);
                     if(isset($_SESSION['iduser'])){
-                        insert_lichsu($_SESSION['iduser'],$id_chuong);
+                        echo $id_truyen;
+                        insert_lichsu($_SESSION['iduser'],$id_truyen);
                     }
 //                    echo "<pre>";
 //                    print_r($image);
@@ -107,7 +109,11 @@ session_start();
                             if($query &&$query['role']==0){
                                 $_SESSION['username']=$query['user_name'];
                                 $_SESSION['iduser']=$query['id'];
-                                include "views/home.php";
+                                echo "
+                                <script>
+                                window.location.href='index.php';
+                                </script>
+                                ";
                             }else{
                                 $err="Đăng nhập thất bại";
                                 include "views/login.php";
@@ -118,6 +124,11 @@ session_start();
                     break;
                 case "dangxuat":
                     session_destroy();
+                    echo "
+                    <script>
+                    window.location.href='index.php';
+</script>
+                    ";
                     include "views/home.php";
                     break;
                 case "doipass":
@@ -152,7 +163,6 @@ session_start();
 
             case "list_yeuthich":
                 if(isset($_SESSION['iduser'])){
-                    echo $_SESSION['iduser'];
                     $loadall_yeuthich=loadall_yeuthich($_SESSION['iduser']);
 //                    echo "<pre>";
 //                    print_r($loadall_yeuthich);
@@ -166,9 +176,8 @@ session_start();
                     insert_yeuthich($_SESSION['iduser'],$_GET['id_truyen']);
                 }else{
                     $err="Bạn phải đăng nhập mới tim được";
-                    echo
-                    "<script>
-                    alert('$err');
+                    echo "<script>
+                        alert($err)
 </script>";
                 }
                 include "views/home.php";
@@ -176,7 +185,19 @@ session_start();
             case "xoa_yeuthich":
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
-                    xoa_yeuthich($id);
+                    if(isset($_GET['confirm'])&& $_GET['confirm']){
+                        xoa_yeuthich($id);
+                        echo '<script>window.location.href = "index.php?act=list_yeuthich";</script>';
+                    }else{
+                        echo '<script>
+                        var result=confirm("Bạn có muốn xóa không");
+                        if(result){
+                            window.location.href = "index.php?act=xoa_yeuthich&id='.$id.'&confirm=true";
+                        }else{
+                            window.location.href = "index.php?act=list_yeuthich";
+                        }
+                        </script>';
+                    }
                 }
                 break;
             case "list_theloai":
