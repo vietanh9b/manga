@@ -39,7 +39,7 @@
 //                    echo "</pre>";
                     echo '
                             <tr>
-                            <td><img style="display: inline-block" src="assets/img/trending/'.$list['img'].'" alt=""></td>
+                            <td><img style="display: inline-block" src="assets/img/trending/'.$list['img'].'" alt="" width="190px"></td>
                             <td><span style="color: #f2f2f2">'.$list['ten_truyen'].'</span></td>
                             <td>
                             <a href="index.php?act=xoa_yeuthich&id='.$list['id_yeuthich'].'">Xóa</a>                       

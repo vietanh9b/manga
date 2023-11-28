@@ -66,8 +66,9 @@
                         </div>
                         <div class="anime__details__btn">
                             <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                            <a href="index.php?act=manga_chapter&id_chuong=<?= $old_chapter[0]['id'];?>" class="watch-btn"><span>Đọc từ đầu</span></a>
-                            <a href="index.php?act=manga_chapter&id_chuong=<?= $new_chapter[0]['id'];?>" class="watch-btn"><span>Đọc mới nhất</span></a>
+
+                            <a href="index.php?act=manga_chapter&id_chuong=<?= $old_chapter[0]['id'];?>&id_truyen=<?= $old_chapter[0]['id_truyen'];?>" class="watch-btn"><span>Đọc từ đầu</span></a>
+                            <a href="index.php?act=manga_chapter&id_chuong=<?= $new_chapter[0]['id'];?>&id_truyen=<?= $new_chapter[0]['id_truyen'];?>" class="watch-btn"><span>Đọc mới nhất</span></a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +81,7 @@
             <?php
             foreach ($load_chapter_number as $load_chapter_number){
                 echo "
-                    <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
+                    <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
                 ";
             }
             ?>
