@@ -16,6 +16,7 @@
     </head>
     <body>
         <?php
+        include_once "../models/naptien.php";
         require_once("./config.php");
         $vnp_SecureHash = $_GET['vnp_SecureHash'];
         $inputData = array();
@@ -43,15 +44,19 @@
         <!--Begin display -->
         <div class="container">
             <div class="header clearfix">
-                <h3 class="text-muted">VNPAY RESPONSE</h3>
+                <h3 class="text-muted">VNPAY</h3>
             </div>
             <div class="table-responsive">
                 <div class="form-group">
                     <label >Số tiền:</label>
                     <?php
                     $check_value_money=$_GET['vnp_Amount']/100;
+                    $nap_tien=nap_tien($_SESSION['iduser'],$check_value_money);
+                                        echo "<pre>";
+                                        print_r($nap_tien);
+                                        echo "</pre>";
                     ?>
-                    <label><?php echo $check_value_money ?></label>
+                    <label><?php echo $check_value_money?></label>
                 </div>
                 <div class="form-group">
                     <label >Mã Ngân hàng:</label>

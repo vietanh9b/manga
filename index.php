@@ -9,6 +9,8 @@ session_start();
     include_once "models/taikhoan.php";
     include_once "models/yeuthich.php";
     include_once "models/lichsu.php";
+    include_once "models/lich_su_mua_truyen.php";
+//    include_once "vnpay_php/config.php";
 
     $all_tl=loadall_theloai();
     $truyen_home=load_truyen_home();
@@ -16,6 +18,9 @@ session_start();
     if(isset($_GET['act'])){
         $act=$_GET['act'];
         switch ($act){
+//            case "naptien":
+//                include_once "vnpay_php/index.php";
+//                break;
             case "manga_detail":
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
@@ -35,23 +40,48 @@ session_start();
             case "manga_chapter":
                 if(isset($_GET['id_chuong'])){
                     $id_chuong=$_GET['id_chuong'];
+                    $loadone_chuong=loadone_chuong($id_chuong);
                     $id_truyen=$_GET['id_truyen'];
-                    $image=load_all_img_truyen($id_chuong);
-                    if(isset($_SESSION['iduser'])){
-                        echo $id_truyen;
-                        insert_lichsu($_SESSION['iduser'],$id_truyen);
+                    if($loadone_chuong['gia']>0){
+                        if(!isset($_SESSION['iduser'])){
+                            echo '<script>
+                        var result=confirm("Bạn phải đăng nhập để đọc truyện này!");
+                        if(result){
+                            window.location.href = "index.php?act=login";
+                        }else{
+                            alert("Bạn phải đăng nhập để đọc truyện");
+                            window.location.href=\'index.php\';
+                        }
+                        </script>';
+                        }else{
+                            $lich_su_mua_truyen=lich_su_mua_truyen($_SESSION['iduser'],$id_truyen);
+                            if($lich_su_mua_truyen)     {
+                                $image=load_all_img_truyen($id_chuong);
+                            }else{
+                                echo '<script>
+                                var result=confirm("Mua truyện!");
+                                if(result){
+                                    window.location.href = "vnpay_php/index.php";
+                                }else{
+                                    alert("Bạn phải mua truyện này mới có thể đọc");
+                                   window.location.href=\'index.php\';
+                                }
+                                </script>';
+                            }
+                        }
+                    }else{
+                        $image=load_all_img_truyen($id_chuong);
+                        if(isset($_SESSION['iduser'])){
+                            echo $id_truyen;
+                            insert_lichsu($_SESSION['iduser'],$id_truyen);
+                        }
                     }
-//                    echo "<pre>";
-//                    print_r($image);
-//                    echo "</pre>";
                 }
-
                 include_once "views/manga_chapter.php";
                 break;
             case "gioithieu":
                 include_once "views/blog-details.php";
                 break;
-
             case "list_lichsu":
                 if(isset($_SESSION['iduser'])){
                     if(isset($err)){
@@ -70,6 +100,11 @@ session_start();
                     "<script>
                     alert('$err');
                     </script>";
+                    echo "
+                    <script>
+                    window.location.href='index.php';
+</script>
+                    ";
                 }
                 break;
                 case 'register':

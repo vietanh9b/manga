@@ -53,15 +53,6 @@
                                         <li><span>Thể loại:</span> <?php echo $theloai['ten_tl']?></li>
                                     </ul>
                                 </div>
-                                <!--                                    <div class="col-lg-6 col-md-6">-->
-                                <!--                                        <ul>-->
-                                <!--                                            <li><span>Scores:</span> 7.31 / 1,515</li>-->
-                                <!--                                            <li><span>Rating:</span> 8.5 / 161 times</li>-->
-                                <!--                                            <li><span>Duration:</span> 24 min/ep</li>-->
-                                <!--                                            <li><span>Quality:</span> HD</li>-->
-                                <!--                                            <li><span>Views:</span> 131,541</li>-->
-                                <!--                                        </ul>-->
-                                <!--                                    </div>-->
                             </div>
                         </div>
                         <div class="anime__details__btn">
@@ -80,9 +71,15 @@
             </div>
             <?php
             foreach ($load_chapter_number as $load_chapter_number){
-                echo "
-                    <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
-                ";
+                    if($load_chapter_number['gia']>0){
+                        echo "
+                            <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']." <i class=\"ml-2 fa-solid fa-lock\"></i></a>
+                        ";
+                    }else{
+                        echo "
+                        <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
+                    ";
+                    }
             }
             ?>
 

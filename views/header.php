@@ -77,6 +77,7 @@
                             <?php
                                 if (UserLogIn()) {
                                     echo '<li><a>Xin chào, ' . getLogInUserName() . '!</a></li>
+                                    <li><a href="vnpay_php/index.php">Nạp tiền</a></li>
                                     <li><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                     <li><a href="index.php?act=change_password">Đổi mật khẩu</a></li>';
                                 } else {

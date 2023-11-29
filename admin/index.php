@@ -51,11 +51,20 @@ if(isset($_GET['act'])){
             if(isset($_GET['id_truyen'])&&isset($_GET['chuong_moi_nhat'])){
                 $id_truyen=$_GET['id_truyen'];
                 $chuong_moi_nhat=$_GET['chuong_moi_nhat']+1;
-                add_chapter($id_truyen,$chuong_moi_nhat);
-//                $previous = "javascript:history.go(-1)";
-//                echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
+                $loadone_tryen=loadone_tryen($id_truyen);
+                include_once "chapter/themchapter.php";
             }
-            include "chapter/ql_chapter.php";
+            if(isset($_POST['submit'])){
+                $gia=$_POST['gia'];
+                $id_truyen=$_POST['id_truyen'];
+                $chuong_moi_nhat=$_POST['chuong_moi_nhat'];
+                if($gia!=''){
+                    add_chapter($id_truyen,$chuong_moi_nhat,$gia);
+                }else{
+                    add_chapter($id_truyen,$chuong_moi_nhat,0);
+                }
+                echo '<script>window.location.href = "index.php?act=chapter";</script>';
+            }
             break;
         case "delete_chapter":
             if(isset($_GET['id'])){
@@ -65,9 +74,21 @@ if(isset($_GET['act'])){
             include "chapter/ql_chapter.php";
             break;
         case "edit_chapter":
-            if(isset($_GET['id'])){
+            if(isset($_GET['id'])&&$_GET!=''){
                 $id=$_GET['id'];
-                load_tat_ca_chuong($id);
+                $loadone_chuong=loadone_chuong($id);
+                echo "<pre>";
+                print_r($loadone_chuong);
+                echo "</pre>";
+            }
+            if(isset($_POST['submit'])){
+                $id_chuong=$_POST['id_chuong'];
+                $chuong=$_POST['chuong'];
+                $ngay=$_POST['ngay'];
+                $luot_xem=$_POST['luot_xem'];
+                $gia=$_POST['gia'];
+                update_chapter($id_chuong,$chuong,$ngay,$luot_xem,$gia);
+                echo '<script>window.location.href = "index.php?act=chapter";</script>';
             }
             include_once "chapter/sua_chapter.php";
             break;

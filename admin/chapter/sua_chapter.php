@@ -1,63 +1,59 @@
+
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item">Quản lý nội bộ</li>
-            <li class="breadcrumb-item"><a href="#">Tạo mới</a></li>
+            <li class="breadcrumb-item">Danh sách đơn hàng</li>
+            <li class="breadcrumb-item"><a href="#">Thêm đơn hàng</a></li>
         </ul>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <h3 class="tile-title">Tạo mới danh sách nội bộ</h3>
+                <h3 class="tile-title">Sửa mới chương <?= $loadone_chuong['chuong_so'];?> <?= $loadone_chuong['ten_truyen'];?></h3>
                 <div class="tile-body">
-                    <div class="row element-button">
-                        <div class="col-sm-2">
-                            <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><b><i
-                                            class="fas fa-folder-plus"></i> Tạo tình trạng mới</b></a>
+                    <form class="row" action="index.php?act=edit_chapter" method="post">
+                        <div class="form-group col-md-8 d-none">
+                            <label class="control-label">ID chương</label>
+                            <input class="form-control" name="id_chuong" type="text" value="<?= $loadone_chuong['id'];?>">
                         </div>
-
-                    </div>
-                    <form class="row">
-                        <div class="form-group col-md-4">
-                            <label class="control-label">Họ và tên</label>
-                            <input class="form-control" type="text">
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Chương</label>
+                            <input class="form-control" name="chuong" type="number" value="<?= $loadone_chuong['chuong_so'];?>">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label class="control-label">Ngày sinh</label>
-                            <input class="form-control" type="date">
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ngày</label>
+                            <input class="form-control" name="ngay" type="date" value="<?= $loadone_chuong['ngay'];?>">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="exampleSelect1" class="control-label">Chức vụ</label>
-                            <select class="form-control" id="exampleSelect1">
-                                <option>-- Chọn chức vụ --</option>
-                                <option>Bán hàng</option>
-                                <option>Tư vấn</option>
-                                <option>Dịch vụ</option>
-                                <option>Thu Ngân</option>
-                                <option>Quản kho</option>
-                                <option>Bảo trì</option>
-                                <option>Kiểm hàng</option>
-                                <option>Bảo vệ</option>
-                                <option>Tạp vụ</option>
-                            </select>
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Lượt xem</label>
+                            <input class="form-control" name="luot_xem" type="number" value="<?= $loadone_chuong['luot_xem'];?>">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label class="control-label">Nhập lý do</label>
-                            <textarea class="form-control" rows="4"></textarea>
+                        <div class="form-group col-md-12" id="gia">
+                            <label class="control-label">Giá</label>
+                            <input class="form-control" name="gia" type="number" value="<?= $loadone_chuong['gia'];?>">
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                            <select class="form-control" id="exampleSelect1">
-                                <option>-- Chọn tình trạng --</option>
-                                <option>Sa thải</option>
-                                <option>Khóa tài khoản</option>
-                            </select>
-                        </div>
-
-                        <div class="tile-footer">
-                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit">Lưu lại</button>
                 </div>
-                <button class="btn btn-save" type="button" style="background: antiquewhite;">Lưu lại</button>
-                <a class="btn btn-cancel" href="/doc/table-data-banned.html" style="background: antiquewhite;">Hủy bỏ</a>
             </div>
+        </div>
+    </div>
 </main>
+<!--<script>-->
+<!--    // Lấy thẻ select và dòng chữ cần ẩn hiện-->
+<!--    const select = document.getElementById('type_chuong');-->
+<!--    const hiddenText = document.getElementById('gia');-->
+<!---->
+<!--    // Thêm sự kiện 'change' vào select-->
+<!--    select.addEventListener('change', function() {-->
+<!--        // Kiểm tra giá trị của select-->
+<!--        if (select.value === '1') {-->
+<!--            // Nếu giá trị là 1, thêm class d-none vào dòng chữ-->
+<!--            hiddenText.classList.remove('d-none');-->
+<!--        } else {-->
+<!--            // Nếu không, xóa class d-none khỏi dòng chữ-->
+<!--            hiddenText.classList.add('d-none');-->
+<!--            // hiddenText.value='0';-->
+<!--            // hiddenText.remove();-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
