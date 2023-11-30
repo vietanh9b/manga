@@ -10,6 +10,7 @@ session_start();
     include_once "models/yeuthich.php";
     include_once "models/lichsu.php";
     include_once "models/lich_su_mua_truyen.php";
+    include_once "models/naptien.php";
 //    include_once "vnpay_php/config.php";
 
     $all_tl=loadall_theloai();
@@ -18,9 +19,21 @@ session_start();
     if(isset($_GET['act'])){
         $act=$_GET['act'];
         switch ($act){
-//            case "naptien":
-//                include_once "vnpay_php/index.php";
-//                break;
+            case "naptien":
+                if(isset($_POST['submit'])&&$_GET['so_tien']!=''){
+                    $so_tien=$_GET['so_tien'];
+                    echo $so_tien." and ".$_SESSION['iduser'];
+                    $nap_tien=nap_tien($_SESSION['iduser'],$so_tien);
+//                    echo "<pre>";
+//                    print_r($nap_tien);
+//                    echo "</pre>";
+                }
+                echo "
+                    <script>
+                    window.location.href='index.php';
+                    </script>
+                    ";
+                break;
             case "manga_detail":
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
@@ -73,7 +86,7 @@ session_start();
                         $image=load_all_img_truyen($id_chuong);
                         if(isset($_SESSION['iduser'])){
                             echo $id_truyen;
-                            insert_lichsu($_SESSION['iduser'],$id_truyen);
+                            insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
                         }
                     }
                 }
@@ -204,15 +217,22 @@ session_start();
 //                    echo "</pre>";
                     include_once "views/list_yeuthich.php";
                 }
+                else{
+                    echo "
+                    <script>
+                    alert('Bạn phải đăng nhập để xem yêu thích');
+                    window.location.href='index.php';
+</script>
+                    ";
+                }
                 break;
             case "them_yeuthich":
 //                echo $_SESSION['iduser'];
                 if(isset($_GET['id_truyen'])&&isset($_SESSION['iduser'])){
                     insert_yeuthich($_SESSION['iduser'],$_GET['id_truyen']);
                 }else{
-                    $err="Bạn phải đăng nhập mới tim được";
                     echo "<script>
-                        alert($err)
+                        alert('Bạn phải đăng nhập mới tim được')
 </script>";
                 }
                 include "views/home.php";
