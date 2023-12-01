@@ -70,7 +70,15 @@
                 <h5>List Name</h5>
             </div>
             <?php
+            $check='';
             foreach ($load_chapter_number as $load_chapter_number){
+//                foreach ($lich_su_chapter as $licsu){
+//                    if($load_chapter_number['id']==$licsu['id_chuong']){
+//                        echo "
+//                        <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
+//                    ";
+//                    }
+//                }
                     if($load_chapter_number['gia']>0){
                         echo "
                             <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']." <i class=\"ml-2 fa-solid fa-lock\"></i></a>
