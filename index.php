@@ -10,8 +10,7 @@ session_start();
     include_once "models/yeuthich.php";
     include_once "models/lichsu.php";
     include_once "models/lich_su_mua_truyen.php";
-    include_once "models/naptien.php";
-    include_once "models/mua_truyen.php";
+    include_once "models/tiencuakhach.php";
 //    include_once "vnpay_php/config.php";
 
     $all_tl=loadall_theloai();
@@ -44,69 +43,75 @@ session_start();
                     $old_chapter=old_chapter($id);
                     $new_chapter=new_chapter($id);
                     $load_chapter_number=load_chapter_number($id);
-//                    $lich_su_chapter=lich_su_chapter($_SESSION['iduser']);
+//                    $lich_su_mua_truyen=false;
+                    if(isset($_SESSION['iduser'])){
+                        $lich_su_chapter=lich_su_chapter($_SESSION['iduser']);
+                        $lich_su_mua_truyen = lich_su_mua_truyen($_SESSION['iduser'], $id);
+                    }
 //                    echo $old_chapter[0]['id'];
 //                    echo "<pre>";
-//                    print_r($load_chapter_number);
+//                    print_r($lich_su_mua_truyen);
 //                    echo "</pre>";
                 }
                 include_once "views/manga-details.php";
                 break;
             case "manga_chapter":
                 if(isset($_GET['id_chuong'])){
-                    $id_chuong=$_GET['id_chuong'];
-                    $loadone_chuong=loadone_chuong($id_chuong);
-                    $id_truyen=$_GET['id_truyen'];
-                    if($loadone_chuong['gia']>0){
+                    $id_chuong = $_GET['id_chuong'];
+                    $loadone_chuong = loadone_chuong($id_chuong);
+                    $id_truyen = $_GET['id_truyen'];
+
+                    if($loadone_chuong['gia'] > 0){
                         if(!isset($_SESSION['iduser'])){
                             echo '<script>
-                        var result=confirm("Bạn phải đăng nhập để đọc truyện này!");
-                        if(result){
-                            window.location.href = "index.php?act=login";
-                        }else{
-                            alert("Bạn phải đăng nhập để đọc truyện");
-                            window.location.href=\'index.php\';
-                        }
-                        </script>';
+                            var result = confirm("Bạn phải đăng nhập để đọc truyện này!");
+                            if(result){
+                                window.location.href = "index.php?act=login";
+                            }else{
+                                alert("Bạn phải đăng nhập để đọc truyện");
+                                window.location.href=\'index.php\';
+                            }
+                            </script>';
                         }else{
 //                            nếu có trong lịch sử mua truyện
-                            $lich_su_mua_truyen=lich_su_mua_truyen($_SESSION['iduser'],$id_truyen);
+                            $lich_su_mua_truyen = lich_su_mua_truyen($_SESSION['iduser'], $id_truyen);
                             if($lich_su_mua_truyen){
-                                $image=load_all_img_truyen($id_chuong);
+                                $image = load_all_img_truyen($id_chuong);
+                                insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
                             }else{
-//                           Nếu không có thì check xem tiền có đủ không
-                                $is_check=$_SESSION['so_tien_hien_tai']>$loadone_chuong['gia']?'true':'false';
-                                ?>
-                                <script>
-                                    var result=confirm("Mua truyện với giá <?= $loadone_chuong['gia']?>đ!");
-                                    if(result){
-                                        var isCheckValue = <?= $is_check?>;
-                                        console.log(isCheckValue+'hahah');
-                                        if(isCheckValue){
-                                            <?php
-                                                echo "mua truyen";
-                                                $_SESSION['so_tien_hien_tai']=$_SESSION['so_tien_hien_tai']-$loadone_chuong['gia'];
-                                                echo $_SESSION['so_tien_hien_tai'];
-                                                mua_truyen($_SESSION['iduser'],$_SESSION['so_tien_hien_tai']);
-                                                truyen_da_mua($_SESSION['iduser'],$id_truyen);
-//                                            ?>
-                                            window.location.href="index.php?act=manga_chapter&id_chuong=29&id_truyen=1";
-                                        }else {
-                                            window.location.href = "vnpay_php/index.php";
-                                        }
-                                    }else{
-                                        alert("Bạn phải mua truyện này mới có thể đọc");
-                                        window.location.href="index.php";
-                                    }
-                                </script>
-                                <?php
-
+                                // Kiểm tra xem người dùng có đủ tiền không
+                                // Trừ tiền trong tài khoản và cập nhật thông tin truyện đã mua
+                                $is_check=$_SESSION['so_tien_hien_tai'] >= $loadone_chuong['gia'];
+                                if($is_check){
+//                                    update tiền tài khoản sau khi mua truyện
+                                    $_SESSION['so_tien_hien_tai'] -= $loadone_chuong['gia'];
+                                    mua_truyen($_SESSION['iduser'], $_SESSION['so_tien_hien_tai']);
+//                                    insert truyện đã mua vào db
+                                    truyen_da_mua($_SESSION['iduser'], $id_truyen);
+                                    $image = load_all_img_truyen($id_chuong);
+//                                    thêm vào lịch sử chapter đã đọc
+                                    insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
+                                    echo
+                                    "<script>
+                                    alert('Mua thành công');
+                                    </script>
+                                    ";
+                                }
+                                else{
+                                    echo
+                                    "<script>
+                                    alert('Bạn chưa đủ tiền để mua truyện này');
+                                    window.location.href='vnpay_php/index.php';
+                                    </script>
+                                    ";
+                                }
                             }
                         }
-                    }else{
-                        $image=load_all_img_truyen($id_chuong);
+                    }
+//                    truyện free
+                    else{
+                        $image = load_all_img_truyen($id_chuong);
                         if(isset($_SESSION['iduser'])){
-                            echo $id_truyen;
                             insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
                         }
                     }

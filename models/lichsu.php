@@ -12,11 +12,14 @@
             $sql=pdo_execute($sql);
             return  $sql;
     }
+//    Lịch sử đọc truyện của từng chap theo từng truyện
+//     ví dụ khi mình đọc đến chapter nào thì chapter đó sẽ đen lại
     function lich_su_chapter($id_user){
-            $sql="SELECT `id_chuong` FROM `lichsu` WHERE `id_user`=3";
+            $sql="SELECT `id_chuong` FROM `lichsu` WHERE `id_user`='$id_user'";
             $sql=pdo_query($sql);
             return  $sql;
     }
+//    tất cả lịch sử trong list lịch sử của user
     function load_lichsu($id_user){
             $sql="SELECT DISTINCT truyen.* FROM truyen JOIN chuong_truyen on chuong_truyen.id_truyen=truyen.id 
             JOIN lichsu ON lichsu.id_chuong = chuong_truyen.id WHERE lichsu.id_user='$id_user';";

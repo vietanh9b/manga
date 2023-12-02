@@ -80,7 +80,7 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Post</button>
-                    <button type="submit" name="redirect" id="redirect" class="btn btn-default">Thanh toán Redirect</button>
+                    <button type="submit" name="redirect" id="redirect" class="btn btn-primary">Thanh toán Redirect</button>
 
                 </form>
             </div>
