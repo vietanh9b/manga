@@ -10,6 +10,7 @@ session_start();
     include_once "models/yeuthich.php";
     include_once "models/lichsu.php";
     include_once "models/lich_su_mua_truyen.php";
+    include_once "models/binhluan.php";
 //    include_once "vnpay_php/config.php";
 
     $all_tl=loadall_theloai();
@@ -34,6 +35,32 @@ session_start();
 //                    echo "<pre>";
 //                    print_r($load_chapter_number);
 //                    echo "</pre>";
+                    $load_comment=load_comment_comic($id);
+                    if (isset($_POST['comment'])) {
+                        if (isset($_SESSION['username'])) {
+                            $flag_cmt = true;
+                            $date = date('Y/m/d', time());
+                            $id_user = $_SESSION['iduser'];
+                            
+                            if (strlen($_POST['text']) == 0) {
+                                $flag_cmt = false;
+                                $err = 'Bạn chưa viết comment';
+                                echo "<script>alert('$err')</script>";
+                            }
+                            if ($flag_cmt == true) {
+                                insert_comment_comic( $_POST['text'], $date, $id_user, $id);
+                                echo '
+                                <script>
+                                window.location.href="index.php?act=manga_detail&id='.$id.'";
+                                </script>
+                                ';
+                            }
+                        } else {
+                            $err_cmt = 'Bạn hãy đăng nhập để comment';
+                            echo "<script>alert('$err_cmt')</script>";
+                            // header("location: " . $_SERVER['HTTP_REFERER']);
+                        }
+                    }
                 }
                 include_once "views/manga-details.php";
                 break;
@@ -76,6 +103,31 @@ session_start();
                             insert_lichsu($_SESSION['iduser'],$id_truyen);
                         }
                     }
+                    $load_comment_chapter=load_comment_chapter($id);
+                    if (isset($_POST['comment_chap'])) {
+                        if (isset($_SESSION['username'])) {
+                            $flag_cmt = true;
+                            $date = date('Y/m/d', time());
+                            $id_user = $_SESSION['iduser'];
+                            
+                            if (strlen($_POST['text']) == 0) {
+                                $flag_cmt = false;
+                                $err_cmt = 'Bạn chưa viết comment';
+                                echo "<script>alert('$err_cmt')</script>";
+                            }
+                            if ($flag_cmt == true) {
+                                insert_comment_chapter( $_POST['text'], $date, $id_user, $id_chuong, $id);
+                                echo '
+                                <script>
+                                window.location.href="index.php?act=manga_detail&id='.$id_chuong.'";
+                                </script>
+                                ';
+                            }
+                        } else {
+                            $err_cmt = 'Bạn hãy đăng nhập để comment';
+                            echo "<script>alert('$err_cmt')</script>";
+                        }
+                    }
                 }
                 include_once "views/manga_chapter.php";
                 break;
@@ -103,7 +155,7 @@ session_start();
                     echo "
                     <script>
                     window.location.href='index.php';
-</script>
+                </script>
                     ";
                 }
                 break;
@@ -112,6 +164,11 @@ session_start();
                         $name = trim($_POST['name']);
                         $email = trim($_POST['email']);
                         $password = trim($_POST['pass']);
+                        $dir="assets/uploads/";
+                        $up_name=basename($_FILES['images']['name']);
+                        $upFile=$dir.$up_name;
+                        move_uploaded_file($_FILES['images']['tmp_name'],$upFile);
+                        $images=$upFile;
                         $flag_register = true;
                         if ($name == "") {
                             $flag_register = false;
@@ -126,7 +183,7 @@ session_start();
                             $err_pass = "Mật khẩu không được để trống";
                         }
                         if ($flag_register) {
-                            $query=insert_taikhoan($name, $email,  $password);
+                            $query=insert_taikhoan($name, $email, $password, $images);
                             $thongbao = "Đăng ký tài khoản thành công";
                         } else {
                             $thongbao = "Đăng ký tài khoản thất bại";

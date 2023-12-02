@@ -6,6 +6,7 @@ include_once "../models/chapter.php";
 include_once "../models/image_truyen.php";
 include_once "../models/trangthai.php";
 include_once "../models/taikhoan.php";
+include_once "../models/binhluan.php";
 include_once "views/header.php";
 include_once "views/sidebar.php";
 $all_tl=loadall_theloai();
@@ -223,6 +224,36 @@ if(isset($_GET['act'])){
                         delete_tk($_GET['id']);
                     }
                     include "users/users.php";
+                    break;
+                case "list_cmt":
+                    $load_all_cmt=load_all_comment();
+                    include_once "binhluan/binhluan.php";
+                    break;
+                case "hide_cmt":
+                    if (isset($_GET['id'])) {
+                        $id = $_GET['id'];
+                        $hide_cmt=hide_comment($id);
+                    }
+                    echo "<script>
+                    window.location.href='index.php?act=list_cmt'
+                    </script>";
+                    break;
+                case "show_cmt":
+                    if (isset($_GET['id'])) {
+                        $id = $_GET['id'];
+                        $show_cmt=show_comment($id);
+                    }
+                    echo "<script>
+                    window.location.href='index.php?act=list_cmt'
+                    </script>";
+                    break;
+                case "del_cmt":
+                    if(isset($_GET['id'])){
+                        delete_comment($_GET['id']);
+                    }
+                    echo "<script>
+                    window.location.href='index.php?act=list_cmt'
+                    </script>";
                     break;
     }
 }else{

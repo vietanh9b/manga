@@ -20,7 +20,7 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Đăng ký</h3>
-                        <form action="index.php?act=register" method="POST">
+                        <form action="index.php?act=register" method="POST"  enctype="multipart/form-data">
                         <div class="input__item">
                                 <input type="text" name="name" placeholder="<?php echo isset($err_name) ? $err_name : "" ?>">
                                 <span class="icon_profile"></span>
@@ -32,6 +32,9 @@
                             <div class="input__item">
                                 <input type="text" name="pass" placeholder="<?php echo isset($err_pass) ? $err_pass : "" ?>">
                                 <span class="icon_lock"></span>
+                            </div>
+                            <div class="input_item">
+                                <input type="file" name="images" accept="image/*">
                             </div>
                             <button type="submit" name="dang_ky" class="site-btn">Đăng ký ngay</button>
                         </form>
