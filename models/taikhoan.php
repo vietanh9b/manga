@@ -20,12 +20,12 @@
         }
     }
 //    đăng ký
-function insert_taikhoan($username,$email,$pass,$images){
-    $query="INSERT INTO `taikhoan` (`id`, `user_name`, `pass_word`, `email`, `role`, `image`) 
-VALUES (NULL, '".$username."', '".$pass."', '".$email."', '0', '".$images."');";
-    $insert_tk=pdo_execute($query);
-    return $insert_tk;
-}
+    function insert_taikhoan($username,$email,$pass){
+        $query="INSERT INTO `taikhoan` (`id`, `user_name`, `pass_word`, `email`, `role`) 
+    VALUES (NULL, '".$username."', '".$pass."', '".$email."', '0');";
+        $insert_tk=pdo_execute($query);
+        return $insert_tk;
+    }
 
 function find_taikhoan($username,$pass){
     $query="SELECT * FROM `taikhoan` WHERE `taikhoan`.`user_name`='$username' and `taikhoan`.`pass_word`='$pass';";

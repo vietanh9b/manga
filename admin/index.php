@@ -145,10 +145,6 @@ if(isset($_GET['act'])){
                     include_once "truyen/list_truyen.php";
                 } else if (isset($_GET['type'])&&$_GET['type'] == 1) {
                     if (isset($_POST['add-btn'])) {
-                        echo $_FILES['img'];
-                        echo "<pre>";
-                        print_r($_FILES['img']);
-                        echo "</pre>";
                         $check = insert_sanpham($_POST['ten_truyen'], $_POST['ten_khac'], $_POST['img'], $_POST['mota'], $_POST['tac_gia'], $_POST['ngay'], $_POST['ma_tl'], $_POST['id_trang_thai']);
                         if ($check) {
                             echo '<script>alert("Thêm thành công")</script>';
@@ -213,7 +209,6 @@ if(isset($_GET['act'])){
                     }
                     include_once "users/dangnhap.php";
                     break;
-        
                 case "taikhoan_kh":
                     $load_all_tk=load_all_tk();
                     include "users/users.php";

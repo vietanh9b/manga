@@ -57,7 +57,6 @@
                         </div>
                         <div class="anime__details__btn">
                             <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-
                             <a href="index.php?act=manga_chapter&id_chuong=<?= $old_chapter[0]['id'];?>&id_truyen=<?= $old_chapter[0]['id_truyen'];?>" class="watch-btn"><span>Đọc từ đầu</span></a>
                             <a href="index.php?act=manga_chapter&id_chuong=<?= $new_chapter[0]['id'];?>&id_truyen=<?= $new_chapter[0]['id_truyen'];?>" class="watch-btn"><span>Đọc mới nhất</span></a>
                         </div>
@@ -67,23 +66,47 @@
         </div>
         <div class="anime__details__episodes">
             <div class="section-title">
-                <h5>List Name</h5>
+                <h5>Các tập</h5>
             </div>
             <?php
-            foreach ($load_chapter_number as $load_chapter_number){
-                    if($load_chapter_number['gia']>0){
-                        echo "
-                            <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']." <i class=\"ml-2 fa-solid fa-lock\"></i></a>
-                        ";
-                    }else{
-                        echo "
-                        <a href='index.php?act=manga_chapter&id_chuong=".$load_chapter_number['id']."&id_truyen=".$load_chapter_number['id_truyen']."'>Chapter ".$load_chapter_number['chuong_so']."</a>
-                    ";
+            $check = '';
+            foreach ($load_chapter_number as $load_chapter_number) {
+                $isTextSecondary = false; // Biến kiểm tra xem có thêm class text-primary hay không
+                if(isset($lich_su_chapter)){
+                    foreach ($lich_su_chapter as $licsu) {
+                        if ($load_chapter_number['id'] == $licsu['id_chuong']) {
+                            $isTextSecondary = true;
+                            break; // Nếu đã tìm thấy, thoát vòng lặp
+                        }
                     }
+                }
+                // Tạo biến class để lưu trữ class cần thêm
+                $additionalClass = $isTextSecondary ? 'text-secondary' : '';
+                if($load_chapter_number['gia']==0 || (isset($lich_su_mua_truyen) && $lich_su_mua_truyen!=[])) {
+                        echo "
+                    <a class='chapter_number $additionalClass' href='index.php?act=manga_chapter&id_chuong=" . $load_chapter_number['id'] . "&id_truyen=" . $load_chapter_number['id_truyen'] . "'>Chapter " . $load_chapter_number['chuong_so'] . "</a>
+                ";
+                    }
+                elseif ($load_chapter_number['gia'] > 0) {
+                    echo "
+                <a class='chapter_number chap_mat_phi $additionalClass'>Chapter " . $load_chapter_number['chuong_so'] . " <i class=\"ml-2 fa-solid fa-lock\"></i></a>
+                <script>
+                    let chapter_mat_phi = document.querySelector('.chap_mat_phi');
+                    chapter_mat_phi.addEventListener('click', () => {
+                        let result = confirm('Bạn có muốn mua truyện với giá " . $load_chapter_number['gia'] . "!');
+                        if (result) {
+                            window.location.href = 'index.php?act=manga_chapter&id_chuong=" . $load_chapter_number['id'] . "&id_truyen=" . $load_chapter_number['id_truyen'] . "';
+                        } else {
+                            alert('Bạn phải mua truyện mới có thể đọc');
+                        }
+                    });
+                </script>
+            ";
+                }
             }
             ?>
-
         </div>
+
         <div class="row">
             <div class="col-lg-8">
                 <div class="anime__details__review">
