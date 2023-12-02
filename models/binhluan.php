@@ -14,11 +14,11 @@ function load_all_comment(){
     return $load_all_cmt;
 }
 function load_comment_comic($id){
-    $sql= "SELECT *, taikhoan.user_name as u_name, truyen.ten_truyen FROM binhluan JOIN taikhoan ON binhluan.id_user=taikhoan.id JOIN truyen ON binhluan.id_truyen=truyen.id WHERE trangthai='0'";
+    $sql= "SELECT *, taikhoan.user_name as u_name, truyen.ten_truyen FROM binhluan JOIN taikhoan ON binhluan.id_user=taikhoan.id JOIN truyen ON binhluan.id_truyen=truyen.id WHERE trangthai='0' and id_truyen='$id'";
     return pdo_query($sql);
 }
 function load_comment_chapter($id){
-    $sql="SELECT *, taikhoan.user_name as u_name, chuong_truyen.id FROM binhluan JOIN taikhoan ON binhluan.id_user=taikhoan.id JOIN chuong_truyen ON binhluan.id_chuong=chuong_truyen.id";
+    $sql="SELECT *, taikhoan.user_name as u_name, chuong_truyen.id FROM binhluan JOIN taikhoan ON binhluan.id_user=taikhoan.id JOIN chuong_truyen ON binhluan.id_chuong=chuong_truyen.id where id_chuong='$id'";
     return pdo_query($sql);
 }
 

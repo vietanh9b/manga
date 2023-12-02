@@ -10,6 +10,8 @@ session_start();
     include_once "models/yeuthich.php";
     include_once "models/lichsu.php";
     include_once "models/lich_su_mua_truyen.php";
+    include_once "models/tiencuakhach.php";
+    include_once "models/binhluan.php";
 //    include_once "vnpay_php/config.php";
 
     $all_tl=loadall_theloai();
@@ -64,7 +66,7 @@ session_start();
                                 echo "<script>alert('$err')</script>";
                             }
                             if ($flag_cmt == true) {
-                                insert_comment_comic( $_POST['text'], $date, $id_user, $id);
+                                insert_comment_comic( $_POST['text'], $date, $id_user ,$id);
                                 echo '
                                 <script>
                                 window.location.href="index.php?act=manga_detail&id='.$id.'";
@@ -140,7 +142,7 @@ session_start();
                             insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
                         }
                     }
-                    $load_comment_chapter=load_comment_chapter($id);
+                    $load_comment_chapter=load_comment_chapter($id_chuong);
                     if (isset($_POST['comment_chap'])) {
                         if (isset($_SESSION['username'])) {
                             $flag_cmt = true;
@@ -153,7 +155,7 @@ session_start();
                                 echo "<script>alert('$err_cmt')</script>";
                             }
                             if ($flag_cmt == true) {
-                                insert_comment_chapter( $_POST['text'], $date, $id_user, $id_chuong, $id);
+                                insert_comment_chapter( $_POST['text'], $date, $id_user, $id_chuong, $id_truyen);
                                 echo '
                                 <script>
                                 window.location.href="index.php?act=manga_detail&id='.$id_chuong.'";
