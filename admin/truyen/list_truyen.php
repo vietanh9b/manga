@@ -72,7 +72,6 @@
             <td>'.$key['ten_truyen'].'</td>
             <td>'.$key['ten_khac'].'</td>
             <td>'.$key['img'].'</td>
-            <td>'.$key['luot_xem'].'</td>
             <td>'.$key['ten_tl'].'</td>
             <td>'.$key['trangthai'].'</td>
             <td><button type="button" value="'.$key['id_truyen'].'" name="fix-btn" class="btn btn-primary"><a href="index.php?act=them_sp&type=2&product='.$key['id_truyen'].'" style="color: white;">Sửa</a></button></td>
@@ -86,7 +85,6 @@
             <td>'.$key['ten_truyen'].'</td>
             <td>'.$key['ten_khac'].'</td>
             <td>'.$key['img'].'</td>
-            <td>'.$key['luot_xem'].'</td>
             <td>'.$key['ten_tl'].'</td>
             <td>'.$key['trangthai'].'</td>
             <td><button type="button" value="'.$key['id_truyen'].'" name="fix-btn" class="btn btn-primary"><a href="index.php?act=them_sp&type=2&product='.$key['id_truyen'].'">Sửa</a></button></td>

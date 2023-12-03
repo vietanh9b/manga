@@ -84,7 +84,7 @@
                                         </div>
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                        <div class="view"><i class="fa fa-eye"></i> '.$luotxem.'</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>

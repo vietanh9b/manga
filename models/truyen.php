@@ -1,6 +1,10 @@
 <?php
 function load_truyen_home(){
-    $sql="select * from truyen where 1 order by id desc limit 0,9";
+    $sql="SELECT truyen.*, SUM(chuong_truyen.luot_xem) AS luotxem 
+            FROM truyen 
+            JOIN chuong_truyen ON chuong_truyen.id_truyen = truyen.id 
+            GROUP BY truyen.id
+            ;";
     $listtruyen=pdo_query($sql);
     return  $listtruyen;
 }
@@ -18,7 +22,7 @@ function load_tat_ca_truyen1(){
 
 //
 function load_tat_ca_truyen(){
-    $sql="SELECT truyen.id as id_truyen,truyen.ten_truyen as ten_truyen,truyen.ten_khac as ten_khac,truyen.img as img,truyen.mota as mota,truyen.tacgia as tacgia,truyen.ngay as ngay,truyen.luot_xem as luot_xem, theloai.id as id_theloai,theloai.ten_tl as ten_tl,trangthai.trangthai as trangthai FROM truyen INNER JOIN theloai ON truyen.ma_tl=theloai.id INNER JOIN trangthai ON truyen.id_trang_thai=trangthai.id ";
+    $sql="SELECT truyen.id as id_truyen,truyen.ten_truyen as ten_truyen,truyen.ten_khac as ten_khac,truyen.img as img,truyen.mota as mota,truyen.tacgia as tacgia,truyen.ngay as ngay, theloai.id as id_theloai,theloai.ten_tl as ten_tl,trangthai.trangthai as trangthai FROM truyen INNER JOIN theloai ON truyen.ma_tl=theloai.id INNER JOIN trangthai ON truyen.id_trang_thai=trangthai.id ";
     $listtruyen=pdo_query($sql);
     return $listtruyen;
 }

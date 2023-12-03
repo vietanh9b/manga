@@ -105,6 +105,10 @@
                             if($lich_su_mua_truyen){
                                 $image = load_all_img_truyen($id_chuong);
                                 insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
+                                insert_luotxem($id_chuong);
+//                                echo "<pre>";
+//                                print_r(insert_luotxem($id_chuong));
+//                                echo "</pre>";
                             }else{
                                 // Kiểm tra xem người dùng có đủ tiền không
                                 // Trừ tiền trong tài khoản và cập nhật thông tin truyện đã mua
@@ -118,6 +122,7 @@
                                     $image = load_all_img_truyen($id_chuong);
 //                                    thêm vào lịch sử chapter đã đọc
                                     insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
+                                    insert_luotxem($id_chuong);
                                     echo
                                     "<script>
                                     alert('Mua thành công');
@@ -140,6 +145,7 @@
                         $image = load_all_img_truyen($id_chuong);
                         if(isset($_SESSION['iduser'])){
                             insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
+                            insert_luotxem($id_chuong);
                         }
                     }
                     $load_comment_chapter=load_comment_chapter($id_chuong);

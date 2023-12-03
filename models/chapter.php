@@ -58,4 +58,14 @@ function update_chapter($id,$chuong_so,$ngay,$luot_xem,$gia){
     $id=pdo_execute($sql);
     return $id;
 }
+
+function insert_luotxem($id_chuong){
+    $query="SELECT `luot_xem` FROM `chuong_truyen` WHERE id='$id_chuong'";
+    $luot_xem_old=pdo_query($query);
+    $luot_xem_new=$luot_xem_old[0]['luot_xem']+1;
+    $sql="UPDATE `chuong_truyen` SET `luot_xem` = '$luot_xem_new' WHERE `chuong_truyen`.`id` = '$id_chuong';";
+    $list=pdo_execute($sql);
+    return $list;
+}
+
 ?>
