@@ -79,6 +79,7 @@
                                     echo '<li><a>Xin chào, ' . getLogInUserName() . '!</a></li>
                                     <li><a href="#">Số tiền: '.$_SESSION['so_tien_hien_tai'].'</a></li>
                                     <li><a href="vnpay_php/index.php">Nạp tiền</a></li>
+                                    <li><a href="index.php?act=hien_thi_truyen_da_mua&id_user='.$_SESSION['iduser'].'">Truyện đã mua</a></li>
                                     <li><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                     <li><a href="index.php?act=change_password">Đổi mật khẩu</a></li>';
                                 } else {

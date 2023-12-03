@@ -52,7 +52,9 @@
                   <th width="100">ID người dùng</th>
                   <th width="500">Tên người dùng</th>
                   <th width="200">Email</th>
-                  <th width="100">Mật khẩu</th>
+                    <th width="100">Số tiền</th>
+                    <th width="100">Mật khẩu</th>
+                    <th width="100">Chức năng</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,6 +66,7 @@
                   <td>'.$tk['id'].'</td>
                   <td>'.$tk['user_name'].'</td>
                   <td>'.$tk['email'].'</td>
+                  <td>'.$tk['so_tien'].' đ</td>
                   <td>'.$tk['pass_word'].'</td>
                   <td>
                   <a href="index.php?act=xoatk&id='.$tk['id'].'">

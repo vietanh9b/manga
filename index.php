@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
     include_once "models/pdo.php";
     include_once "models/theloai.php";
     include_once "models/truyen.php";
@@ -114,7 +114,7 @@ session_start();
                                     $_SESSION['so_tien_hien_tai'] -= $loadone_chuong['gia'];
                                     mua_truyen($_SESSION['iduser'], $_SESSION['so_tien_hien_tai']);
 //                                    insert truyện đã mua vào db
-                                    truyen_da_mua($_SESSION['iduser'], $id_truyen);
+                                    insert_truyen_da_mua($_SESSION['iduser'], $id_truyen,$loadone_chuong['gia']);
                                     $image = load_all_img_truyen($id_chuong);
 //                                    thêm vào lịch sử chapter đã đọc
                                     insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
@@ -338,6 +338,16 @@ session_start();
                     $list_theloai=list_theloai($id);
                     include_once "views/list_theloai.php";
                 }
+                break;
+            case "hien_thi_truyen_da_mua":
+                if(isset($_GET['id_user'])){
+                    $id_user=$_GET['id_user'];
+                    $truyen_da_mua=truyen_da_mua($id_user);
+//                                        echo "<pre>";
+//                    print_r($truyen_da_mua);
+//                    echo "</pre>";
+                }
+                include_once "views/list_truyen_da_mua.php";
                 break;
         }
     }else{

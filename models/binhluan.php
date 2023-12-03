@@ -9,7 +9,7 @@ function show_comment($id){
 }
 
 function load_all_comment(){
-    $sql="SELECT *, taikhoan.user_name as u_name, truyen.ten_truyen FROM binhluan JOIN taikhoan ON binhluan.id_user=taikhoan.id JOIN truyen ON binhluan.id_truyen=truyen.id WHERE 1";
+    $sql="SELECT binhluan.*, taikhoan.user_name as u_name, truyen.ten_truyen FROM binhluan JOIN taikhoan ON binhluan.id_user=taikhoan.id JOIN truyen ON binhluan.id_truyen=truyen.id WHERE 1";
     $load_all_cmt=pdo_query($sql);
     return $load_all_cmt;
 }
@@ -35,7 +35,7 @@ function insert_comment_chapter($detail,$date,$id_user,$id_chapter,$id_comic){
 
 }
 function delete_comment($id){
-    $sql= "DELETE FROM binhluan WHERE id=" .$id;
+    $sql= "DELETE FROM `binhluan` WHERE `binhluan`.`id` = '$id';";
     pdo_execute($sql);
 }
 ?>

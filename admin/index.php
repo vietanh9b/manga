@@ -7,6 +7,9 @@ include_once "../models/image_truyen.php";
 include_once "../models/trangthai.php";
 include_once "../models/taikhoan.php";
 include_once "../models/binhluan.php";
+include_once "../models/lich_su_mua_truyen.php";
+include_once "../models/thongke.php";
+
 include_once "views/header.php";
 include_once "views/sidebar.php";
 $all_tl=loadall_theloai();
@@ -181,7 +184,7 @@ if(isset($_GET['act'])){
                     include_once "truyen/list_truyen.php";
                 }
                 // echo "kkk";
-                // include_once "truyen/list_truyen.php";
+                // include_once "truyen/list_truyen_da_mua.php";
                 break;
 
                 case "dangnhap":
@@ -244,12 +247,36 @@ if(isset($_GET['act'])){
                     break;
                 case "del_cmt":
                     if(isset($_GET['id'])){
+                        echo $_GET['id'];
                         delete_comment($_GET['id']);
                     }
+//                    include "?act=list_cmt";
                     echo "<script>
                     window.location.href='index.php?act=list_cmt'
                     </script>";
                     break;
+        case "list_truyen_da_mua":
+            $so_truyen_da_mua=so_luong_nguoi_mua();
+//            echo $so_truyen_da_mua;
+//            echo "<pre>";
+//            print_r($so_truyen_da_mua);
+//            echo "</pre>";
+            include_once "truyen_da_mua/list_truyen_da_mua.php";
+            break;
+        case "tai_khoan_mua_truyen":
+            if(isset($_GET['id_truyen'])){
+                $id_truyen=$_GET['id_truyen'];
+                $ten_truyen=$_GET['ten_truyen'];
+                $gia=$_GET['gia'];
+                $tai_khoan_mua_truyen=tai_khoan_mua_truyen($id_truyen);
+            }
+            include_once "truyen_da_mua/tai_khoan_mua_truyen.php";
+            break;
+        case "thongke":
+            $list_thongke=list_thongke();
+            $list_thongke_truyen_da_mua=list_thongke_truyen_da_mua();
+            include_once "thongke/list_thongke.php";
+            break;
     }
 }else{
     include_once "views/home.php";

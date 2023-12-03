@@ -10,7 +10,7 @@
     </div>
     <hr>
     <ul class="app-menu">
-        <li><a class="app-menu__item haha" href="index.php?act=the_loai"><i class='app-menu__icon bx bx-cart-alt'></i>
+        <li><a class="app-menu__item" href="index.php?act=the_loai"><i class='app-menu__icon bx bx-cart-alt'></i>
                 <span class="app-menu__label">Quản lý thể loại</span></a></li>
         <li><a class="app-menu__item " href="index.php?act=chapter"><i class='app-menu__icon bx bx-tachometer'></i><span
                         class="app-menu__label">Quản lý chapter</span></a></li>
@@ -21,10 +21,10 @@
         <li><a class="app-menu__item" href="index.php?act=list_cmt"><i
                         class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý bình luận</span></a>
         </li>
-        <li><a class="app-menu__item " href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-                        class="app-menu__label">Quản lý đơn hàng</span></a></li>
-        <li><a class="app-menu__item active" href="table-data-banned.html"><i class='app-menu__icon bx bx-run'></i><span
-                        class="app-menu__label">Feedback
+        <li><a class="app-menu__item" href="index.php?act=list_truyen_da_mua"><i class='app-menu__icon bx bx-task'></i><span
+                        class="app-menu__label">Truyện đã mua</span></a></li>
+        <li><a class="app-menu__item" href="index.php?act=thongke"><i class='app-menu__icon bx bx-run'></i><span
+                        class="app-menu__label">Thống kê
           </span></a></li>
         <li><a class="app-menu__item" href="table-data-money.html"><i class='app-menu__icon bx bx-dollar'></i><span
                         class="app-menu__label">Bảng kê lương</span></a></li>

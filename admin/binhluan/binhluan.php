@@ -5,7 +5,6 @@
       </ul>
       <div id="clock"></div>
     </div>
-
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
@@ -62,7 +61,6 @@
                     ';
                 }
               ?>
-
               </tbody>
             </table>
           </div>
