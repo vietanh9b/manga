@@ -6,8 +6,8 @@
     }
 
     function new_image($id_chapter){
-        $sql="SELECT * FROM image_truyen WHERE id_chuong = $id_chapter ORDER BY `img_so` DESC LIMIT 1;";
-        $id=pdo_query($sql);
+        $sql="SELECT * FROM image_truyen WHERE id_chuong = '$id_chapter' ORDER BY `img_so` DESC LIMIT 1;";
+        $id=pdo_query_one($sql);
         return $id;
     }
 

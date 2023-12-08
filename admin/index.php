@@ -110,11 +110,19 @@ else {
                     $target_file = $target_dir . basename($_FILES["image"]["name"]);
                     echo $target_file;
                     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                        echo "Ảnh " . htmlspecialchars(basename($_FILES["image"]["name"])) . " đã được upload.";
+//                        echo "Ảnh " . htmlspecialchars(basename($_FILES["image"]["name"])) . " đã được upload.";
+                            insert_img_chapter($image, $id_chuong, $new_image['img_so'] + 1);
                     } else {
-                        echo "Upload ảnh thất bại.";
+                        echo "
+                        <script>
+                        alert('Upload ảnh thất bại!');
+                        </script>";
                     }
-                    insert_img_chapter($image, $id_chuong, $new_image[0]['img_so'] + 1);
+//                                echo "<pre>";
+//            print_r($new_image);
+//            echo "</pre>";
+
+
                     echo '<script>window.location.href = "index.php?act=chapter_image&id=' . $id_chuong . '";</script>';
                 }
                 include_once "chapter/image_chapter.php";

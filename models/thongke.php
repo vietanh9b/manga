@@ -33,4 +33,12 @@
         return $list;
     }
 
+    function insert_lich_su_tien($id_user,$trangthai,$so_tien){
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $ngay=date('Y/m/d');
+        $query="INSERT INTO `lich_su_tien` (`id`, `id_user`, `trangthai`, `so_tien`, `ngay`) 
+        VALUES (NULL, '$id_user', '$trangthai', '$so_tien', '$ngay');";
+        pdo_execute($query);
+    }
+
 ?>

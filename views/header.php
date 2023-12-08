@@ -75,7 +75,6 @@
                         <li><span class="icon_profile text-light"></span>
                             <ul class="dropdown">
                             <?php
-
                                 if (UserLogIn()) {
                                     $so_tien_hien_tai=$_SESSION['so_tien_hien_tai'];
                                     echo '<li><a>Xin chào, ' . getLogInUserName() . '!</a></li>

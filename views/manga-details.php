@@ -6,7 +6,7 @@
                 <div class="breadcrumb__links">
                     <a href="../index.php"><i class="fa fa-home"></i> Home</a>
                     <a href="../catanime__details__btnegories.html">Categories</a>
-                    <span>Romance</span>
+                    <span><?php echo $loadone_tryen['ten_truyen']?></span>
                 </div>
             </div>
         </div>

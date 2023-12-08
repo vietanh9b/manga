@@ -29,6 +29,7 @@
                     echo "test";
                     $nap_tien=nap_tien($_SESSION['iduser'],$so_tien);
                     $so_tien_hien_tai=so_tien_hien_tai($_SESSION['iduser']);
+                    insert_lich_su_tien($_SESSION['iduser'],0,$so_tien);
                     $_SESSION['so_tien_hien_tai']=$so_tien_hien_tai['so_tien'];
                 }
                 echo "
@@ -122,6 +123,8 @@
 //                                    insert truyện đã mua vào db
                                     insert_truyen_da_mua($_SESSION['iduser'], $id_truyen,$loadone_chuong['gia']);
                                     $image = load_all_img_truyen($id_chuong);
+//                                    thêm vào lịch sử tiền
+                                    insert_lich_su_tien($_SESSION['iduser'],1,$loadone_chuong['gia']);
 //                                    thêm vào lịch sử chapter đã đọc
                                     insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
                                     insert_luotxem($id_chuong);
@@ -359,10 +362,6 @@
                 break;
             case "thongke":
                 $thongke_user=thongke_user($_SESSION['iduser']);
-//                    echo "<pre>";
-//                    print_r($thongke_user);
-//                    echo "</pre>";
-//                var_dump($thongke_user);
                 include_once "views/thongke.php";
                 break;
 
