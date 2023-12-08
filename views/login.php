@@ -27,7 +27,7 @@
                                 <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" id="pass" name="pass" required placeholder="Password">
+                                <input type="password" id="pass" name="pass" required placeholder="Password">
                                 <span class="icon_lock"></span>
 
                             </div>

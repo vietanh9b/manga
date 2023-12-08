@@ -30,7 +30,7 @@
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" name="pass" placeholder="<?php echo isset($err_pass) ? $err_pass : "" ?>">
+                                <input type="password" name="pass" placeholder="<?php echo isset($err_pass) ? $err_pass : "" ?>">
                                 <span class="icon_lock"></span>
                             </div>
                             <div class="input_item">

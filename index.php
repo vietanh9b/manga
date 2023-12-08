@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     include_once "models/pdo.php";
     include_once "models/theloai.php";
@@ -12,6 +13,7 @@
     include_once "models/lich_su_mua_truyen.php";
     include_once "models/tiencuakhach.php";
     include_once "models/binhluan.php";
+    include_once "models/thongke.php";
 //    include_once "vnpay_php/config.php";
 
     $all_tl=loadall_theloai();
@@ -143,9 +145,9 @@
 //                    truyện free
                     else{
                         $image = load_all_img_truyen($id_chuong);
+                        insert_luotxem($id_chuong);
                         if(isset($_SESSION['iduser'])){
                             insert_lichsu($_SESSION['iduser'],$id_chuong,$id_truyen);
-                            insert_luotxem($id_chuong);
                         }
                     }
                     $load_comment_chapter=load_comment_chapter($id_chuong);
@@ -355,6 +357,15 @@
                 }
                 include_once "views/list_truyen_da_mua.php";
                 break;
+            case "thongke":
+                $thongke_user=thongke_user($_SESSION['iduser']);
+//                    echo "<pre>";
+//                    print_r($thongke_user);
+//                    echo "</pre>";
+//                var_dump($thongke_user);
+                include_once "views/thongke.php";
+                break;
+
         }
     }else{
         include "views/home.php";

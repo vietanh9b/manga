@@ -93,7 +93,7 @@
                 <script>
                     let chapter_mat_phi = document.querySelector('.chap_mat_phi');
                     chapter_mat_phi.addEventListener('click', () => {
-                        let result = confirm('Bạn có muốn mua truyện với giá " . $load_chapter_number['gia'] . "!');
+                        let result = confirm('Bạn có muốn mua truyện với giá " . $load_chapter_number['gia'] . "đ!');
                         if (result) {
                             window.location.href = 'index.php?act=manga_chapter&id_chuong=" . $load_chapter_number['id'] . "&id_truyen=" . $load_chapter_number['id_truyen'] . "';
                         } else {
@@ -139,4 +139,3 @@
         </div>
     </div>
 </section>
-<!-- Anime Section End -->

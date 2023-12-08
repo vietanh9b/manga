@@ -43,16 +43,18 @@
                     foreach ($all_truyen as $truyen){
                         $load_tat_ca_chuong=load_tat_ca_chuong($truyen['id']);
                         $new_chapter=new_chapter($truyen['id']);
-//                                echo "<pre>";
-//                                print_r($new_chapter);
-//                                echo "</pre>";
+                        if(!$new_chapter){
+                            $chuong_moi_nhat=0;
+                        }else{
+                            $chuong_moi_nhat=$new_chapter[0]['chuong_so'];
+                        }
                         ?>
                   <h2 class="accordion-header mt-4 mb-4" id="headingOne">
                       <?= $truyen['ten_truyen'];?>
                   </h2>
                     <div class="row">
                       <div class="col-sm-2">
-                          <a class="btn btn-add btn-sm" href="index.php?act=add_chapter&id_truyen=<?= $truyen['id'];?>&chuong_moi_nhat=<?= $new_chapter[0]['chuong_so'];?>" title="Thêm"><i class="fas fa-plus"></i>
+                          <a class="btn btn-add btn-sm" href="index.php?act=add_chapter&id_truyen=<?= $truyen['id'];?>&chuong_moi_nhat=<?= $chuong_moi_nhat;?>" title="Thêm"><i class="fas fa-plus"></i>
                               Tạo mới</a>
                       </div>
                       </div>

@@ -65,8 +65,8 @@
                         <?php
                         foreach ($list_theloai as $truyen){
                             extract($truyen);
-                                                echo "<pre>";
-                                                echo $id;
+//                                                echo "<pre>";
+//                                                echo $id;
 //                    print_r($truyen['id']);
                     echo "</pre>";
                             echo '

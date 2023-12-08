@@ -10,7 +10,7 @@ function load_truyen_home(){
 }
 function load_truyen_hot(){
 //    top 10 lươt xem
-    $sql="select * from truyen where 1 order by luotxem desc limit 0,10";
+    $sql="select * from truyen where 1";
     $listtruyen=pdo_query($sql);
     return $listtruyen;
 }
@@ -34,7 +34,7 @@ function loadone_tryen($id){
     return $result;
 }
 function load_truyen_cungloai($ma_tl){
-    $sql = "SELECT truyen.id as id_truyen,truyen.ten_truyen as ten_truyen,truyen.ten_khac as ten_khac,truyen.img as img,truyen.mota as mota,truyen.tacgia as tacgia,truyen.ngay as ngay,truyen.luot_xem as luot_xem, theloai.id as id_theloai,theloai.ten_tl as ten_tl,trangthai.trangthai as trangthai FROM truyen INNER JOIN theloai ON truyen.ma_tl=theloai.id INNER JOIN trangthai ON truyen.id_trang_thai=trangthai.id where ma_tl = $ma_tl";
+    $sql = "SELECT truyen.id as id_truyen,truyen.ten_truyen as ten_truyen,truyen.ten_khac as ten_khac,truyen.img as img,truyen.mota as mota,truyen.tacgia as tacgia,truyen.ngay as ngay, theloai.id as id_theloai,theloai.ten_tl as ten_tl,trangthai.trangthai as trangthai FROM truyen INNER JOIN theloai ON truyen.ma_tl=theloai.id INNER JOIN trangthai ON truyen.id_trang_thai=trangthai.id where ma_tl = $ma_tl";
     $result = pdo_query($sql);
     return $result;
 }
@@ -46,7 +46,7 @@ function load_sanpham_cungloai_header($iddm){
 }
 function insert_sanpham($ten_truyen,$ten_khac, $img, $mota, $tac_gia, $ngay, $ma_tl, $id_trang_thai){
     $newDateFormat = date('Y-m-d', strtotime($ngay));
-    $sql = "INSERT INTO `truyen`(`ten_truyen`, `ten_khac`, `img`, `mota`, `tacgia`, `ngay`, `ma_tl`, `id_trang_thai`, `luot_xem`) VALUES ('$ten_truyen','$ten_khac','$img', '$mota', '$tac_gia', '$newDateFormat', $ma_tl, $id_trang_thai, 0);";
+    $sql = "INSERT INTO `truyen`(`ten_truyen`, `ten_khac`, `img`, `mota`, `tacgia`, `ngay`, `ma_tl`, `id_trang_thai`) VALUES ('$ten_truyen','$ten_khac','$img', '$mota', '$tac_gia', '$newDateFormat', '$ma_tl', '$id_trang_thai');";
     return pdo_execute($sql);
 }
 function delete_sp($id){

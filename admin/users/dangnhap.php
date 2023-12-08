@@ -1,5 +1,7 @@
-<div class="container"  style="margin-top: 50px">
-    <h2>Đăng nhập vào Admin</h2>
+
+<div class="container app-content" style="margin-top: 50px;">
+    <div class="row">
+        <h2>Đăng nhập vào Admin</h2>
         <form action="index.php?act=dangnhap" method="POST">
             <div class="form-group">
                 <label for="username">Tên admin:</label>
@@ -16,4 +18,5 @@
             }
             ?>
         </form>
+    </div>
 </div>

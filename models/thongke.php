@@ -21,4 +21,16 @@
         return $list;
     }
 
+    function thongke_user($id_user){
+        $sql="SELECT 
+                MONTH(ngay) AS thang,
+                SUM(CASE WHEN trangthai = 1 THEN so_tien ELSE 0 END) AS tien_tieu,
+                SUM(CASE WHEN trangthai = 0 THEN so_tien ELSE 0 END) AS tien_nap
+            FROM lich_su_tien
+            WHERE trangthai IN (0, 1) and id_user='$id_user'
+            GROUP BY MONTH(ngay);";
+        $list=pdo_query($sql);
+        return $list;
+    }
+
 ?>

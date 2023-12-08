@@ -48,7 +48,7 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.php">Trang chủ</a></li>
+                            <li class=""><a href="./index.php">Trang chủ</a></li>
                             <li><a href="./categories.html">Thể loại <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     <?php
@@ -75,16 +75,22 @@
                         <li><span class="icon_profile text-light"></span>
                             <ul class="dropdown">
                             <?php
+
                                 if (UserLogIn()) {
+                                    $so_tien_hien_tai=$_SESSION['so_tien_hien_tai'];
                                     echo '<li><a>Xin chào, ' . getLogInUserName() . '!</a></li>
-                                    <li><a href="#">Số tiền: '.$_SESSION['so_tien_hien_tai'].'</a></li>
+                                    <li><a href="#">Số tiền: '.number_format("$so_tien_hien_tai").'đ</a></li>
                                     <li><a href="vnpay_php/index.php">Nạp tiền</a></li>
                                     <li><a href="index.php?act=hien_thi_truyen_da_mua&id_user='.$_SESSION['iduser'].'">Truyện đã mua</a></li>
+                                    <li><a href="index.php?act=thongke">Thống kê cá nhân</a></li>
                                     <li><a href="index.php?act=dangxuat">Đăng xuất</a></li>
                                     <li><a href="index.php?act=change_password">Đổi mật khẩu</a></li>';
                                 } else {
-                                    echo '<li><a href="index.php?act=login">Đăng nhập</a></li>
-                                    <li><a href="index.php?act=register">Đăng ký</a></li>';
+                                    echo '
+                                    <li><a href="index.php?act=login">Đăng nhập</a></li>
+                                    <li><a href="index.php?act=register">Đăng ký</a></li>
+                                    <li><a href="admin/index.php?act=dangnhap">Đăng nhập tài khoản admin</a></li>
+                                    ';
                                 }
                                 ?>
                             </ul>
